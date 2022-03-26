@@ -8,7 +8,7 @@ namespace Pages.LoadingPage
     public class LoadingPage : Page
     {
         [SerializeField] private Button continueButton;
-        private const float WaitingTime = 2f;
+        private const float WaitingTime = 1f;
 
         private void Awake()
         {

@@ -7,7 +7,7 @@ namespace Pages.InstructionsPage
     public class InstructionsPage : Page
     {
         [SerializeField] private Button continueButton;
-        [SerializeField] private Menu.Menu menuPanel;
+        [SerializeField] private UI.Pages.Menu.Menu menuPanel;
         private const float WaitingTime = 2f;
 
         private void Awake()
