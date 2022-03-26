@@ -1,18 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
+using Common;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class InstructionsPage : MonoBehaviour
+namespace Pages.InstructionsPage
 {
-    // Start is called before the first frame update
-    void Start()
+    public class InstructionsPage : Page
     {
-        
-    }
+        [SerializeField] private Button continueButton;
+        private const float WaitingTime = 2f;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void Awake()
+        {
+            continueButton.onClick.AddListener(() =>
+            {
+                NextPageShow();
+                Hide();
+            });
+        }
     }
 }
