@@ -50,11 +50,6 @@ namespace API.Helpers
         /// <returns>Возвращает саму модель</returns>
         public static GameObject GetModel(string url)
         {
-            string path = GetFilePath(url);
-            if (!File.Exists(path))
-            {
-                DownloadModel(url);
-            }
             return Importer.LoadFromFile(GetFilePath(url));
         }
 
