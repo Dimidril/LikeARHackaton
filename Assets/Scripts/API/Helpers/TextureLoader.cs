@@ -2,6 +2,7 @@
 using System.Collections;
 using System.IO;
 using System.Linq;
+using Cache;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -9,14 +10,16 @@ namespace API.Helpers
 {
     public class TextureLoader : MonoBehaviour
     {
-        public static void Load(string link, string cacheSavePath, System.Action<Texture2D> onLoadCallback)
+        private string savePath = CacheDestination.ImagesFolderPath;
+        
+        public static void Load(string link, System.Action<Texture2D> onLoadCallback)
         {
             var loader = new GameObject().AddComponent<TextureLoader>();
 
-            loader.StartCoroutine(loader.LoadTextureFromServer(link, cacheSavePath, onLoadCallback));
+            loader.StartCoroutine(loader.LoadTextureFromServer(link, onLoadCallback));
         }
 
-        IEnumerator LoadTextureFromServer(string url, string cacheSavePath, System.Action<Texture2D> callback)
+        IEnumerator LoadTextureFromServer(string url, System.Action<Texture2D> callback)
         {
             var textureName = new Uri(url).ToString().Split('/').Last();
             gameObject.name = url;
@@ -25,7 +28,7 @@ namespace API.Helpers
             var ready = false;
             var isLocalUrl = !Uri.IsWellFormedUriString(url, UriKind.Absolute);
 
-            var filePath = isLocalUrl ? url : Path.Combine(cacheSavePath, textureName);
+            var filePath = isLocalUrl ? url : Path.Combine(savePath, textureName);
 
             if (!File.Exists(filePath))
             {

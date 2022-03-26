@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.IO;
+using Cache;
 using Siccity.GLTFUtility;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -9,27 +10,25 @@ namespace API.Helpers
 {
     public class ModelLoader : MonoBehaviour
     {
-        GameObject wrapper;
-        string filePath;
+        static string filePath => CacheDestination.ModelFolderPath;
 
-        private void Start()
+        /// <summary>
+        /// Чисто загрузка модели в кэш
+        /// </summary>
+        /// <param name="url">Ссылка из сервера</param>
+        public static void DownloadModel(string url)
         {
-            filePath = $"{Application.persistentDataPath}/Files/";
-            wrapper = new GameObject
-            {
-                name = "Model"
-            };
-            
-            DownloadFile("https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/BoxVertexColors/glTF-Embedded/BoxVertexColors.gltf");
+            var loader = new GameObject().AddComponent<ModelLoader>();
+            loader.DownloadFile(url);
         }
-    
-        public void DownloadFile(string url)
+        
+        void DownloadFile(string url)
         {
             string path = GetFilePath(url);
             if (File.Exists(path))
             {
                 Debug.Log("Found file locally, loading...");
-                LoadModel(path);
+                Destroy(gameObject);
                 return;
             }
 
@@ -39,27 +38,32 @@ namespace API.Helpers
                 {
                     // Log any errors that may happen
                     Debug.Log($"{req.error} : {req.downloadHandler.text}");
-                } else
-                {
-                    // Save the model into a new wrapper
-                    LoadModel(path);
                 }
+                Destroy(gameObject);
             }));
         }
+        
+        /// <summary>
+        /// забрать модель из файловой системы
+        /// </summary>
+        /// <param name="url">Ссылка которая приходит с сервера</param>
+        /// <returns>Возвращает саму модель</returns>
+        public static GameObject GetModel(string url)
+        {
+            string path = GetFilePath(url);
+            if (!File.Exists(path))
+            {
+                DownloadModel(url);
+            }
+            return Importer.LoadFromFile(GetFilePath(url));
+        }
 
-        string GetFilePath(string url)
+        static string GetFilePath(string url)
         {
             string[] pieces = url.Split('/');
             string filename = pieces[pieces.Length - 1];
 
-            return $"{filePath}{filename}";
-        }
-
-        void LoadModel(string path)
-        {
-            ResetWrapper();
-            GameObject model = Importer.LoadFromFile(path);
-            model.transform.SetParent(wrapper.transform);
+            return $"{filePath}/{filename}";
         }
 
         IEnumerator GetFileRequest(string url, Action<UnityWebRequest> callback)
@@ -69,17 +73,6 @@ namespace API.Helpers
                 req.downloadHandler = new DownloadHandlerFile(GetFilePath(url));
                 yield return req.SendWebRequest();
                 callback(req);
-            }
-        }
-
-        void ResetWrapper()
-        {
-            if (wrapper != null)
-            {
-                foreach(Transform trans in wrapper.transform)
-                {
-                    Destroy(trans.gameObject);
-                }
             }
         }
     }
