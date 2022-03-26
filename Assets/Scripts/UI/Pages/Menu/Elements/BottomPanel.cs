@@ -7,8 +7,8 @@ namespace Pages.Menu.Elements
 {
     public class BottomPanel : Page
     {
-        [SerializeField] private Button[] menuButtons;
-        [SerializeField] private Text[] menuText;
+        public Button[] menuButtons;
+        public Text[] menuText;
 
         [SerializeField] private Font regularFont;
         [SerializeField] private Font boldFont;

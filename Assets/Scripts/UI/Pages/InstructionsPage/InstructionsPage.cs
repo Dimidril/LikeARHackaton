@@ -7,6 +7,7 @@ namespace Pages.InstructionsPage
     public class InstructionsPage : Page
     {
         [SerializeField] private Button continueButton;
+        [SerializeField] private Menu.Menu menuPanel;
         private const float WaitingTime = 2f;
 
         private void Awake()
@@ -14,6 +15,7 @@ namespace Pages.InstructionsPage
             continueButton.onClick.AddListener(() =>
             {
                 NextPageShow();
+                menuPanel.gameObject.SetActive(true);
                 Hide();
             });
         }
