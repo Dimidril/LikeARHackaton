@@ -13,8 +13,10 @@ namespace UI.Pages.CoursesPage
     {
         [SerializeField] private Menu.Menu menuPanel;
         [SerializeField] private string menuName;
-        [SerializeField] private CoursesCard cardPrefab;
+        [SerializeField] private CardButton cardPrefab;
         [SerializeField] private RectTransform parent;
+        [SerializeField] private CoursesPage coursesPage;
+        [SerializeField] private CoursesCard coursesCard;
 
         void Awake()
         {
@@ -23,8 +25,11 @@ namespace UI.Pages.CoursesPage
                 var card = Instantiate(cardPrefab, parent);
                 card.name = "Course Card " + coursesListCourse.name;
                 Texture2D img = Texture2D.blackTexture;
-                TextureLoader.Load(Path.Combine(Constants.BASE_URL, coursesListCourse.imagePath), texture2D => img = texture2D);
-                card.Init(coursesListCourse.name, SpriteCreator.Create(img), coursesListCourse.description);
+                TextureLoader.Load(Constants.BASE_URL+'/' +coursesListCourse.image, texture2D =>
+                {
+                    img = texture2D;
+                    card.Init(coursesListCourse.name, SpriteCreator.Create(img), coursesListCourse.description, coursesCard, coursesPage);
+                });
             }
         }
 

@@ -62,8 +62,7 @@ namespace Pages.LoadingPage
                         coursesResponse = coursesText;
 
                         File.WriteAllText(API.Constants.COUESES_SAVE_PATH, coursesText);
-                        
-                        
+                        ApplyData();
                     });
                 }
             });
