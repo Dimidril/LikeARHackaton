@@ -11,13 +11,8 @@ public class ModelsCardsConvas : MonoBehaviour
 {
     [SerializeField] private ArTapToPlaceObject _tapToPlaceObject;
 
-    public void ChangeActiveModel(Wrappers.ARObject modelInfo)
+    public void ChangeActiveModel(GameObject modelInfo)
     {
-        GameObject model = null;
-        ModelLoader.DownloadModel(modelInfo.model, ga =>
-        {
-            model = ga;
-        });
-        _tapToPlaceObject.Init(model);
+        _tapToPlaceObject.Init(modelInfo);
     }
 }
