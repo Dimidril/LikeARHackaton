@@ -12,8 +12,7 @@ public class TestLoadermodel : MonoBehaviour
     {
         if (Input.GetMouseButtonUp(0))
         {
-            ModelLoader.DownloadModel(url);
-            ModelLoader.GetModel(url);
+            ModelLoader.DownloadModel(url, () => ModelLoader.GetModel(url));
         }
     }
 }

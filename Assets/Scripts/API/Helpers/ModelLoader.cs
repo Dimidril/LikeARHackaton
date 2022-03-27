@@ -16,18 +16,19 @@ namespace API.Helpers
         /// Чисто загрузка модели в кэш
         /// </summary>
         /// <param name="url">Ссылка из сервера</param>
-        public static void DownloadModel(string url)
+        public static void DownloadModel(string url, Action callback)
         {
             var loader = new GameObject().AddComponent<ModelLoader>();
-            loader.DownloadFile(url);
+            loader.DownloadFile(url, callback);
         }
         
-        void DownloadFile(string url)
+        void DownloadFile(string url, Action callback)
         {
             string path = GetFilePath(url);
             if (File.Exists(path))
             {
                 Debug.Log("Found file locally, loading...");
+                callback?.Invoke();
                 Destroy(gameObject);
                 return;
             }
@@ -39,17 +40,19 @@ namespace API.Helpers
                     // Log any errors that may happen
                     Debug.Log($"{req.error} : {req.downloadHandler.text}");
                 }
+                callback?.Invoke();
                 Destroy(gameObject);
             }));
         }
         
         /// <summary>
-        /// забрать модель из файловой системы
+        /// Забрать модель из файловой системы
         /// </summary>
         /// <param name="url">Ссылка которая приходит с сервера</param>
         /// <returns>Возвращает саму модель</returns>
         public static GameObject GetModel(string url)
         {
+            
             return Importer.LoadFromFile(GetFilePath(url));
         }
 

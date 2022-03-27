@@ -15,7 +15,8 @@ namespace Plugins.ARFoundationPlaceModelOnGround.Scripts.AR
 
         [SerializeField] ARRaycastManager arRaycastManager;
         [SerializeField] GameObject placementIndicator;
-        [SerializeField] GameObject objectToPlace;
+        GameObject objectToPlace;
+        [SerializeField] private Transform parentForArObject;
         [SerializeField] Camera arCamera;
         [SerializeField] ARPlaneManager arPlaneManager;
         [SerializeField] Camera virtualCamera;
@@ -71,6 +72,13 @@ namespace Plugins.ARFoundationPlaceModelOnGround.Scripts.AR
             {
                 PlaneLosed();
             }
+        }
+
+        public void Init(GameObject object1)
+        {
+            this.objectToPlace = object1;
+            objectToPlace.transform.SetParent(parentForArObject);
+            objectToPlace.SetActive(false);
         }
 
         public void Reset()
