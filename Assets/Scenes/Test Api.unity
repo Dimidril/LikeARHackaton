@@ -309,7 +309,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1966846622}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c34d7aa57c6ebbb408348a60f7f7dc89, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b7dd3e0919b5924e9d5bcfaf847b109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   url: https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/BoxVertexColors/glTF-Embedded/BoxVertexColors.gltf
