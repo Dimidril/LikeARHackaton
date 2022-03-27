@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6828577207885910977}
   - component: {fileID: 6828577207885910976}
   - component: {fileID: 6828577207885910979}
+  - component: {fileID: 4973552144321110066}
   m_Layer: 5
   m_Name: PlaceCardPrefab
   m_TagString: Untagged
@@ -121,6 +122,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4973552144321110066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6828577207885910981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47dbac0193c5eee44b92042f3273ecc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameText: {fileID: 6828577208784658536}
+  button: {fileID: 6828577207885910979}
 --- !u!1 &6828577208784658538
 GameObject:
   m_ObjectHideFlags: 0

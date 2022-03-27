@@ -23,10 +23,9 @@ namespace UI.Cards.PlaceCard
             menuPanel.topPanel.BackButtonActive(true);
         }
 
-        public void Init(string title, Sprite img, string description)
+        public void Init(string title, string description)
         {
             menuPanel.topPanel.SetLabel(title);
-            image.sprite = img;
             descriptionText.text = description;
         }
     }

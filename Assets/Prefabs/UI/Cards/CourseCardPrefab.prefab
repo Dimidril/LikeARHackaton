@@ -68,7 +68,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8db36a9ca5eed0d4cbf73d9f62b44362, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bb01d08a3ed59104aaf406a0f443c3d3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 7952426648775100993}
   - component: {fileID: 7952426648775100992}
   - component: {fileID: 7952426648775100995}
+  - component: {fileID: 669555630494043800}
   m_Layer: 5
   m_Name: CourseCardPrefab
   m_TagString: Untagged
@@ -162,7 +163,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7952426648775101005}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -226,6 +227,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 1
+--- !u!114 &669555630494043800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7952426648775101005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52f14debfd4d594ab2d3794354ada35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 7952426648159608301}
+  nameText: {fileID: 7952426649401557296}
+  button: {fileID: 7952426648159608300}
 --- !u!1 &7952426649401557298
 GameObject:
   m_ObjectHideFlags: 0

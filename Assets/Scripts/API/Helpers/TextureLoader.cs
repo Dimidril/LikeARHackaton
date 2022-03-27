@@ -10,8 +10,13 @@ namespace API.Helpers
 {
     public class TextureLoader : MonoBehaviour
     {
-        private string savePath = CacheDestination.ImagesFolderPath;
-        
+        private string savePath;
+
+        private void Awake()
+        {
+            savePath = CacheDestination.ImagesFolderPath;
+        }
+
         public static void Load(string link, System.Action<Texture2D> onLoadCallback)
         {
             var loader = new GameObject().AddComponent<TextureLoader>();
