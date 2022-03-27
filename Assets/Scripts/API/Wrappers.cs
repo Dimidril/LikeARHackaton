@@ -22,7 +22,7 @@ namespace API
             public int id;
             public string name;
             public string description;
-            public string imagePath;
+            public string image;
         }
 
         [Serializable]
@@ -30,10 +30,10 @@ namespace API
         {
             public int id;
             public string name;
-            public string description;
-            public string audioPath;
+            public string descruption;
+            public string audio;
             public string audioText;
-            public ARObject[] aRObjects;
+            public ARObject[] models;
         }
 
         [Serializable]
@@ -41,8 +41,8 @@ namespace API
         {
             public int id;
             public string name;
-            public string modelPath;
-            public string description;
+            public string image;
+            public string model;
         }
     }
 }
