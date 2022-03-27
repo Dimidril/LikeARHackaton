@@ -12,9 +12,9 @@ namespace DefaultNamespace
 
         private void Start()
         {
-            ModelLoader.DownloadModel(modelLink, () =>
+            ModelLoader.DownloadModel(modelLink, (model) =>
             {
-                arTapToPlaceObject.Init(ModelLoader.GetModel(modelLink));
+                //arTapToPlaceObject.Init(model);
             });
         }
     }

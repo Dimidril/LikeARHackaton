@@ -41,7 +41,7 @@ namespace Plugins.ARFoundationPlaceModelOnGround.Scripts.AR
             if (Input.GetMouseButtonDown(0))
             {
                 PlaceObject();
-                gameObject.SetActive(false);
+                //gameObject.SetActive(false);
                 virtualCamera.gameObject.SetActive(true);
                 arCamera.gameObject.SetActive(false);
             }
@@ -65,7 +65,7 @@ namespace Plugins.ARFoundationPlaceModelOnGround.Scripts.AR
                     foreach (var groundPoint in FindObjectsOfType<ARFeatheredPlaneMeshVisualizer>())
                         Destroy(groundPoint.gameObject);
 
-                    gameObject.SetActive(false);
+                    //gameObject.SetActive(false);
                 }
             }
             else
@@ -74,9 +74,9 @@ namespace Plugins.ARFoundationPlaceModelOnGround.Scripts.AR
             }
         }
 
-        public void Init(GameObject object1)
+        public void Init(GameObject model)
         {
-            this.objectToPlace = object1;
+            objectToPlace = model;
             objectToPlace.transform.SetParent(parentForArObject);
             objectToPlace.SetActive(false);
         }
@@ -88,11 +88,12 @@ namespace Plugins.ARFoundationPlaceModelOnGround.Scripts.AR
             gameObject.SetActive(true);
             arPlaneManager.enabled = true;
             placementPoseIsValid = false;
-            objectToPlace.SetActive(false);
+            //objectToPlace.SetActive(false);
             arCamera.gameObject.SetActive(true);
             virtualCamera.gameObject.SetActive(false);
+            objectToPlace = null;
 
-            objectToPlace.transform.position = Vector3.one * 10000; //Перемещаем подальше от глаз, отсюда 10000
+            //objectToPlace.transform.position = Vector3.one * 10000; //Перемещаем подальше от глаз, отсюда 10000
         }
 
         void PlaceObject()
@@ -100,6 +101,7 @@ namespace Plugins.ARFoundationPlaceModelOnGround.Scripts.AR
             OnObjectPlaced?.Invoke();
             objectToPlace.SetActive(true);
             objectToPlace.transform.SetPositionAndRotation(placementPose.position, placementPose.rotation);
+            Reset();
         }
 
         void UpdatePlacementPose()
@@ -127,5 +129,9 @@ namespace Plugins.ARFoundationPlaceModelOnGround.Scripts.AR
             if (placementPoseIsValid)
                 placementIndicator.transform.SetPositionAndRotation(placementPose.position, placementPose.rotation);
         }
+    }
+
+    public class Wrappers
+    {
     }
 }
